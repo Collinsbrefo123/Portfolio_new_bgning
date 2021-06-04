@@ -1,0 +1,16 @@
+{% extends 'portfolio/base.html' %}
+{% block title %}
+        Blogs
+{% endblock %}
+{% block content %}
+    <h2>There are {{ blogs.count }} number of blog{{ blogs.count|pluralize }}</h2>
+    {% load static %}
+    <img src="{% static 'blog/convo12.JPG' %}" alt="">
+
+    {% for blog in blogs %}
+        <a href="{% url 'blog:details' blog.id %}"><h1>{{ blog.title }}</h1></a>
+        <p>{{ blog.date| date:"M d Y"| upper }}</p>
+        <p>{{ blog.description|striptags|truncatechars:70 }}</p>
+    {% endfor %}
+
+{% endblock %}
